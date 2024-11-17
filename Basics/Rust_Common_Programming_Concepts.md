@@ -19,6 +19,88 @@ fn main() {
 }
 ```
 
+## **`const`**
+
+### Definition:
+- `const` is used to define **constants** that are always immutable and known at compile time.
+
+### Key Features:
+1. **Immutable by Default**: Cannot be changed after declaration.
+2. **Global or Scoped**: Can be declared in global or block scope.
+3. **Compile-time Requirement**: The value must be a compile-time constant.
+4. **Type Annotation Required**: Explicit type annotation is mandatory.
+
+### Example:
+```rust
+const MAX_SCORE: u32 = 100; // Compile-time constant
+
+fn main() {
+    println!("Max Score: {}", MAX_SCORE);
+    // MAX_SCORE = 200; // Error: cannot assign to a constant
+}
+```
+
+### Use Case:
+- Use `const` for fixed values that don’t change during the program's lifecycle, such as mathematical constants or configuration values.
+
+---
+
+## **Shadowing**
+
+### Definition:
+- Shadowing allows you to **redeclare a variable** with the same name, effectively creating a new variable that "shadows" the previous one.
+
+### Key Features:
+1. **Does Not Mutate**: Unlike `mut`, shadowing creates a new variable without mutating the original.
+2. **Allows Type Changes**: The new variable can have a different type.
+3. **Scoped**: The shadowed variable is valid only in its block.
+
+### Examples:
+
+#### Basic Example:
+```rust
+fn main() {
+    let x = 5; // Immutable variable
+    let x = x + 1; // Shadowing (creates a new variable)
+    let x = x * 2; // Shadowing again
+    println!("Final value of x: {}", x); // Output: 12
+}
+```
+
+#### Type Change with Shadowing:
+```rust
+fn main() {
+    let spaces = "   "; // String type
+    let spaces = spaces.len(); // Integer type (shadowing changes type)
+    println!("Spaces length: {}", spaces); // Output: 3
+}
+```
+
+### Use Case:
+- Use shadowing to transform or refine a variable without mutating it, ensuring immutability while allowing reassignments.
+
+---
+
+## **Comparison: `const` vs. Shadowing**
+
+| Feature                | `const`                           | Shadowing                       |
+|------------------------|------------------------------------|---------------------------------|
+| **Mutability**         | Always immutable                  | Creates new variables, not mutable |
+| **Scope**              | Global or block                   | Block-scoped                   |
+| **Type Change**        | Not allowed                       | Allowed during shadowing       |
+| **Initialization**     | Compile-time constant required    | Value can be computed at runtime |
+| **Usage**              | Fixed values                     | Transform or refine variable values |
+
+---
+
+## **Key Points**
+
+- **`const`** is for defining **compile-time constants**.
+- **Shadowing** allows redeclaring variables for **runtime transformations** or **type changes**.
+
+
+
+
 ---
 
 ## **2. Data Types**
